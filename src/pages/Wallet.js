@@ -11,24 +11,69 @@ class Wallet extends React.Component {
 
   render() {
     const { userEmail, currencies } = this.props;
-    console.log(currencies);
+    // console.log(currencies);
     return (
       <nav>
-        <p
-          data-testid="email-field"
-        >
+        <div data-testid="email-field">
           { userEmail }
-        </p>
-        <p
-          data-testid="total-field"
-        >
+        </div>
+        <div data-testid="total-field">
           0
-        </p>
-        <p
-          data-testid="header-currency-field"
-        >
+        </div>
+        <div data-testid="header-currency-field">
           BRL
-        </p>
+        </div>
+        <form>
+
+          <label
+            htmlFor="valor"
+          >
+            Valor
+            <input data-testid="value-input" />
+          </label>
+
+          <label
+            htmlFor="descricao"
+          >
+            Descrição
+            <input data-testid="description-input" />
+          </label>
+
+          <label
+            htmlFor="moeda"
+          >
+            Moeda
+            <select data-testid="currency-input" id="moeda">
+              {
+                currencies.map(($) => <option key={ $ }>{ $ }</option>)
+              }
+            </select>
+          </label>
+
+          <label
+            htmlFor="pagamento"
+          >
+            Método de Pagamento
+            <select data-testid="method-input">
+              <option>Dinheiro</option>
+              <option>Cartão de crédito</option>
+              <option>Cartão de débito</option>
+            </select>
+          </label>
+
+          <label
+            htmlFor="categoria"
+          >
+            Categoria
+            <select data-testid="tag-input">
+              <option>Alimentação</option>
+              <option>Lazer</option>
+              <option>Trabalho</option>
+              <option>Transporte</option>
+              <option>Saúde</option>
+            </select>
+          </label>
+        </form>
       </nav>
     );
   }
