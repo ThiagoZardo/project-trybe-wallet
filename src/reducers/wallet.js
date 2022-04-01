@@ -17,7 +17,7 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       loading: false,
-      currencies: action.data,
+      currencies: Object.keys(action.data),
     };
   case 'FAILURE_API':
     return {
