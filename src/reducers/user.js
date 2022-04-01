@@ -1,19 +1,17 @@
 const INITIAL_STATE = {
-  user: {
-    email: '',
-  },
+  email: '',
 };
 
-function reducer(state = INITIAL_STATE, action) {
+function user(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case 'TIPO_DA_ACTION':
+  case 'USER_EMAIL':
     return {
       ...state,
-      email: action.user.email,
+      email: action.email,
     };
   default:
     return state;
   }
 }
 
-export default reducer;
+export default user;
