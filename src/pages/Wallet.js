@@ -10,7 +10,9 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { userEmail } = this.props;
+    const { userEmail, currencies } = this.props;
+    console.log(currencies);
+    // const { current } = this.state;
     return (
       <nav>
         <p
