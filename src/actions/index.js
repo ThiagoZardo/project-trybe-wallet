@@ -14,6 +14,11 @@ export const responseAPI = (data) => ({
   data,
 });
 
+export const infosExpenses = (infos) => ({
+  type: 'INFOS_EXPENSES',
+  expenses: infos,
+});
+
 export const failureApi = (error) => ({
   type: 'FAILURE_API',
   error,

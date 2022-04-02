@@ -1,16 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchApi } from '../actions';
+import { fetchApi, infosExpenses } from '../actions';
 
 class Wallet extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      valor: '',
+      descricao: '',
+      moeda: '',
+      pagamento: '',
+      categoria: '',
+    };
+  }
+
   componentDidMount() {
     const { awesomeApi } = this.props;
     awesomeApi();
   }
 
+  changeInput = ({ target }) => {
+    const { name } = target;
+    this.setState({
+      [name]: target.value,
+    });
+  }
+
+  clearInputs = () => {
+    this.setState({
+      valor: '',
+      descricao: '',
+      moeda: '',
+      pagamento: '',
+      categoria: '',
+    });
+  }
+
   render() {
-    const { userEmail, currencies } = this.props;
+    const { userEmail, currencies, expenses } = this.props;
     // console.log(currencies);
     return (
       <nav>
@@ -29,21 +57,34 @@ class Wallet extends React.Component {
             htmlFor="valor"
           >
             Valor
-            <input data-testid="value-input" />
+            <input
+              data-testid="value-input"
+              name="valor"
+              onChange={ this.changeInput }
+            />
           </label>
 
           <label
             htmlFor="descricao"
           >
             Descrição
-            <input data-testid="description-input" />
+            <input
+              data-testid="description-input"
+              name="descricao"
+              onChange={ this.changeInput }
+            />
           </label>
 
           <label
             htmlFor="moeda"
           >
             Moeda
-            <select data-testid="currency-input" id="moeda">
+            <select
+              data-testid="currency-input"
+              name="moeda"
+              id="moeda"
+              onChange={ this.changeInput }
+            >
               {
                 currencies.map(($) => <option key={ $ }>{ $ }</option>)
               }
@@ -54,7 +95,11 @@ class Wallet extends React.Component {
             htmlFor="pagamento"
           >
             Método de Pagamento
-            <select data-testid="method-input">
+            <select
+              data-testid="method-input"
+              name="pagamento"
+              onChange={ this.changeInput }
+            >
               <option>Dinheiro</option>
               <option>Cartão de crédito</option>
               <option>Cartão de débito</option>
@@ -65,7 +110,11 @@ class Wallet extends React.Component {
             htmlFor="categoria"
           >
             Categoria
-            <select data-testid="tag-input">
+            <select
+              data-testid="tag-input"
+              name="categoria"
+              onChange={ this.changeInput }
+            >
               <option>Alimentação</option>
               <option>Lazer</option>
               <option>Trabalho</option>
@@ -73,6 +122,14 @@ class Wallet extends React.Component {
               <option>Saúde</option>
             </select>
           </label>
+
+          <button
+            id="btnAdd"
+            type="button"
+            onClick={ () => expenses(this.state) }
+          >
+            Adicionar despesa
+          </button>
         </form>
       </nav>
     );
@@ -86,12 +143,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   awesomeApi: () => dispatch(fetchApi()),
+  expenses: (infos) => dispatch(infosExpenses(infos)),
 });
 
 Wallet.propTypes = {
   userEmail: PropTypes.objectOf(PropTypes.string).isRequired,
   currencies: PropTypes.objectOf(PropTypes.string).isRequired,
   awesomeApi: PropTypes.func.isRequired,
+  expenses: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
