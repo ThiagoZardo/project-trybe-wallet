@@ -5,6 +5,12 @@ export const saveEmail = (email) => ({
   email,
 });
 
+export const infosExpensesAction = (infos, data) => ({
+  type: 'INFOS_EXPENSES',
+  infos,
+  data,
+});
+
 export const requestApi = () => ({
   type: 'REQUEST_API',
 });
@@ -12,11 +18,6 @@ export const requestApi = () => ({
 export const responseAPI = (data) => ({
   type: 'RESPONSE_API',
   data,
-});
-
-export const infosExpenses = (infos) => ({
-  type: 'INFOS_EXPENSES',
-  expenses: infos,
 });
 
 export const failureApi = (error) => ({
@@ -32,6 +33,18 @@ export function fetchApi() {
       dispatch(responseAPI(data));
     } catch (error) {
       dispatch(failureApi(error));
+    }
+  };
+}
+
+export function infosExpenses(infos) {
+  return async (dispatch) => {
+    dispatch(requestApi());
+    try {
+      const data = await awesomeApi();
+      dispatch(infosExpensesAction(infos, data));
+    } catch (error) {
+      dispatch(failureApi());
     }
   };
 }

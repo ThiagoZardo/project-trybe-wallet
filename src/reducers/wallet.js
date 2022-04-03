@@ -1,5 +1,6 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
+  id: 0,
   currencies: [],
   expenses: [],
   loading: false,
@@ -25,6 +26,18 @@ const wallet = (state = INITIAL_STATE, action) => {
       loading: false,
       error: action.error,
     };
+  case 'INFOS_EXPENSES': {
+    const obj = {
+      id: state.id,
+      ...action.infos,
+      exchangeRates: action.data,
+    };
+    return {
+      ...state,
+      id: state.id + 1,
+      expenses: [...state.expenses, obj],
+    };
+  }
   default:
     return state;
   }
