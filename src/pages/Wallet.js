@@ -147,37 +147,42 @@ class Wallet extends React.Component {
           </button>
         </form>
         <table>
-          <tr>
-            <td>Descrição</td>
-            <td>Tag</td>
-            <td>Método de pagamento</td>
-            <td>Valor</td>
-            <td>Moeda</td>
-            <td>Câmbio utilizado</td>
-            <td>Valor convertido</td>
-            <td>Moeda de conversão</td>
-            <td>Editar/Excluir</td>
-          </tr>
-          {
-            expensesProp.map((el, index) => (
-              <tr
-                key={ index }
-              >
-                <td>{ el.description }</td>
-                <td>{ el.tag }</td>
-                <td>{ el.method }</td>
-                <td>{ Number(el.value).toFixed(2) }</td>
-                <td>
-                  {
-                    el.currency.exchangeRates
-                      .find((elName) => elName.code === el.currency)
-                      .map((nameCurrent) => nameCurrent.name)
-                  }
-                </td>
-                <td>{ el.tag }</td>
-                <td>{ el.tag }</td>
-              </tr>))
-          }
+          <tbody>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+            {
+              expensesProp && (
+                expensesProp.map((el, index) => {
+                  const { name, ask } = Object.values(el.exchangeRates)
+                    .find((elName) => elName.code === el.currency);
+                  return (
+                    <tr
+                      key={ index }
+                    >
+                      <td>{ el.description }</td>
+                      <td>{ el.tag }</td>
+                      <td>{ el.method }</td>
+                      <td>{ Number(el.value).toFixed(2) }</td>
+                      <td>{ name }</td>
+                      <td>{ Number(ask) }</td>
+                      <td>{ Number(ask).toFixed(2) }</td>
+                      <td>{ Number(el.value).toFixed(2) * ask }</td>
+                      <td>Real</td>
+                    </tr>
+                  );
+                })
+              )
+            }
+          </tbody>
         </table>
       </nav>
     );
@@ -195,11 +200,11 @@ const mapStateToProps = (state) => ({
 });
 
 Wallet.propTypes = {
-  userEmail: PropTypes.objectOf(PropTypes.string).isRequired,
-  currencies: PropTypes.objectOf(PropTypes.string).isRequired,
+  userEmail: PropTypes.string.isRequired,
+  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   awesomeApi: PropTypes.func.isRequired,
-  expenses: PropTypes.objectOf(PropTypes.string).isRequired,
-  expensesProp: PropTypes.objectOf(PropTypes.string).isRequired,
+  expenses: PropTypes.func.isRequired,
+  expensesProp: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
