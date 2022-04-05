@@ -45,10 +45,15 @@ class Wallet extends React.Component {
     const { value, description, currency, method, tag } = this.state;
     const { userEmail, currencies, expensesProp } = this.props;
 
-    const total = expensesProp.reduce((acc, currentValue) => {
-      acc += currentValue.value * currentValue.exchangeRates[currentValue.currency].ask;
-      return acc;
-    }, 0);
+    let total = 0;
+    expensesProp.forEach((element) => {
+      total += Number(element.value) * element.exchangeRates[element.currency].ask;
+    });
+
+    // const total = expensesProp.reduce((acc, currentValue) => {
+    //   acc += currentValue.value * currentValue.exchangeRates[currentValue.currency].ask;
+    //   return acc;
+    // }, 0);
 
     return (
       <nav>
