@@ -1,0 +1,81 @@
+.nav-wallet {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 2%;
+}
+
+.nav-wallet img {
+  width: 200px;
+}
+
+.email-user {
+  padding: 25px 0;
+}
+
+.total-field {
+  padding: 25px 0;
+}
+
+.currency {
+  padding: 25px 0;
+}
+
+.form-wallet {
+  background-color: rgb(46, 39, 39);
+  color: white;
+  display: flex;
+  font-size: 14px;
+  font-weight: 300;
+  justify-content: space-between;
+  padding: 20px 5px;
+}
+
+.value-input {
+  border-radius: 8px;
+  height: 25px;
+  margin: 10px 5px;
+  width: 70px;
+}
+
+.method-wallet {
+  border-radius: 8px;
+  height: 35px;
+  margin: 10px 5px;
+  width: 150px;
+}
+
+.tag-wallet {
+  border-radius: 8px;
+  height: 35px;
+  margin: 10px 5px;
+  width: 120px;
+}
+
+.description-input {
+  border-radius: 8px;
+  height: 35px;
+  margin: 10px 5px;
+  width: 170px;
+}
+
+.form-wallet button {
+  background-color: rgb(62, 62, 223);
+  border-radius: 8px;
+  color: white;
+  height: 35px;
+  margin: 10px 5px;
+  width: 170px;
+}
+
+.table-wallet {
+  background-color: rgb(58, 49, 49);
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+  width: 100%;
+}
+
+.table-wallet td {
+  background-color: white;
+  color: black;
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchApi, infosExpenses } from '../actions';
+import logoTrybe from '../images/trybe-logo.png';
+import '../css/Wallet.css';
 
 const pagamento = 'Cartão de débito';
 
@@ -50,29 +52,37 @@ class Wallet extends React.Component {
       total += Number(element.value) * element.exchangeRates[element.currency].ask;
     });
 
-    // const total = expensesProp.reduce((acc, currentValue) => {
-    //   acc += currentValue.value * currentValue.exchangeRates[currentValue.currency].ask;
-    //   return acc;
-    // }, 0);
-
     return (
-      <nav>
-        <div data-testid="email-field">
-          { userEmail }
-        </div>
-        <div data-testid="total-field">
-          { total.toFixed(2) }
-        </div>
-        <div data-testid="header-currency-field">
-          BRL
-        </div>
-        <form>
+      <div>
+        <nav className="nav-wallet">
+          <img alt="logo-trybe" className="logo-trybe-wallet" src={ logoTrybe } />
+          <div
+            data-testid="email-field"
+            className="email-user"
+          >
+            Email:
+            {' '}
+            { userEmail }
+          </div>
+          <div
+            data-testid="total-field"
+            className="total-field"
+          >
+            Despesa Total:
+            {' '}
+            { total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          </div>
+        </nav>
 
+        <form className="form-wallet">
           <label
             htmlFor="value"
+            className="label-valor"
           >
-            Valor
+            Valor:
+            {' '}
             <input
+              className="value-input"
               data-testid="value-input"
               name="value"
               onChange={ this.changeInput }
@@ -81,23 +91,13 @@ class Wallet extends React.Component {
           </label>
 
           <label
-            htmlFor="description"
-          >
-            Descrição
-            <input
-              data-testid="description-input"
-              name="description"
-              onChange={ this.changeInput }
-              value={ description }
-            />
-          </label>
-
-          <label
             htmlFor="currency"
             data-testid="currency-input"
           >
-            Moeda
+            Moeda:
+            {' '}
             <select
+              className="value-input"
               name="currency"
               id="currency"
               onChange={ this.changeInput }
@@ -113,8 +113,10 @@ class Wallet extends React.Component {
             data-testid="method-input"
             htmlFor="method"
           >
-            Método de Pagamento
+            Método de Pagamento:
+            {' '}
             <select
+              className="method-wallet"
               name="method"
               onChange={ this.changeInput }
               value={ method }
@@ -129,8 +131,10 @@ class Wallet extends React.Component {
             htmlFor="tag"
             data-testid="tag-input"
           >
-            Categoria
+            Categoria:
+            {' '}
             <select
+              className="tag-wallet"
               name="tag"
               onChange={ this.changeInput }
               value={ tag }
@@ -141,6 +145,21 @@ class Wallet extends React.Component {
               <option>Transporte</option>
               <option>Saúde</option>
             </select>
+            {' '}
+          </label>
+
+          <label
+            htmlFor="description"
+          >
+            Descrição:
+            {' '}
+            <input
+              className="description-input"
+              data-testid="description-input"
+              name="description"
+              onChange={ this.changeInput }
+              value={ description }
+            />
           </label>
 
           <button
@@ -151,9 +170,10 @@ class Wallet extends React.Component {
             Adicionar despesa
           </button>
         </form>
-        <table>
+
+        <table className="table-wallet">
           <tbody>
-            <tr>
+            <tr className="head-table">
               <th>Descrição</th>
               <th>Tag</th>
               <th>Método de pagamento</th>
@@ -189,7 +209,7 @@ class Wallet extends React.Component {
             }
           </tbody>
         </table>
-      </nav>
+      </div>
     );
   }
 }

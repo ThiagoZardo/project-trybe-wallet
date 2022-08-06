@@ -1,0 +1,39 @@
+.container-menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container-wallet {
+  border: 1px solid rgb(163, 141, 141);
+  border-radius: 20px;
+  margin: 100px auto;
+  max-width: 500px;
+  padding: 20px 0;
+}
+
+.container-wallet img {
+  width: 320px;
+}
+
+.input-login {
+  background-color: red;
+  border-radius: 5px;
+  display: block;
+  height: 25px;
+  margin: 10px auto;
+  width: 70%;
+}
+
+.loginBtn {
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  padding: 5px 15px;
+  width: 70%;
+}
+
+.loginBtn a {
+  text-decoration: none;
+}
+

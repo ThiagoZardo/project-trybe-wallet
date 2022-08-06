@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { saveEmail } from '../actions';
+import '../css/Login.css';
+import logoTrybe from '../images/trybe-logo.png';
 
 class Login extends React.Component {
   constructor() {
@@ -40,9 +42,11 @@ class Login extends React.Component {
     const { isButtonDisabled, email } = this.state;
     const { userEmail } = this.props;
     return (
-      <div>
-        <form>
+      <div className="container-menu">
+        <form className="container-wallet">
+          <img alt="logo-trybe" src={ logoTrybe } />
           <input
+            className="input-login"
             name="email"
             type="text"
             placeholder="E-mail"
@@ -50,6 +54,7 @@ class Login extends React.Component {
             onChange={ this.validadeLogin }
           />
           <input
+            className="input-login"
             name="password"
             type="password"
             placeholder="Senha"
@@ -60,6 +65,7 @@ class Login extends React.Component {
             to="/carteira"
           >
             <button
+              className="loginBtn"
               name="loginBtn"
               data-testid="login-submit-button"
               type="submit"
