@@ -10,6 +10,9 @@ Esta aplicação foi desenvolvida em React que e utilizei Redux como ferramenta 
 Através dessa aplicação, é possível realizar as operações básicas de criação e manipulação de um estado de redux.
 
  ---
+ 
+ ## Protótipo do Projeto
+ 
 
 # Habilidades desenvolvidas
 
